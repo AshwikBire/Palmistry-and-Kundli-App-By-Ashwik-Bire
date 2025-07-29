@@ -1,5 +1,5 @@
-# Sample base structure of app.py (single folder, all features placeholder)
-app_code = """
+# kundli_app_generator.py
+app_code = '''
 import streamlit as st
 from flatlib.chart import Chart
 from flatlib.datetime import Datetime
@@ -11,12 +11,9 @@ import numpy as np
 from datetime import datetime
 from streamlit_option_menu import option_menu
 
-# -----------------------------
-# App UI Design
-# -----------------------------
 st.set_page_config(page_title="कुंडली और हस्तरेखा", layout="wide")
 
-st.markdown(\"""<h1 style='text-align: center; color: gold;'>🔮 कुंडली और हस्तरेखा विश्लेषण</h1>\""", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: gold;'>🔮 कुंडली और हस्तरेखा विश्लेषण</h1>", unsafe_allow_html=True)
 
 selected = option_menu(
     menu_title=None,
@@ -25,28 +22,18 @@ selected = option_menu(
     orientation="horizontal"
 )
 
-# -----------------------------
-# कुंडली जनरेशन
-# -----------------------------
 def generate_kundli(date, time, place):
-    dt = Datetime(date, time, '+05:30')  # IST
-    pos = GeoPos("19.8762", "75.3433")  # Static Aurangabad, change as needed
+    dt = Datetime(date, time, '+05:30')  # भारत का समय
+    pos = GeoPos("19.8762", "75.3433")  # औरंगाबाद (स्थिर), आवश्यकता अनुसार बदलें
     chart = Chart(dt, pos)
     return chart
 
-# -----------------------------
-# दोष विश्लेषण
-# -----------------------------
 def check_dosh(chart):
     dosh_list = []
     if chart.get('MARS').sign == chart.get('ASC').sign:
         dosh_list.append("मंगल दोष")
-    # Add more logic
     return dosh_list
 
-# -----------------------------
-# PDF Download
-# -----------------------------
 def create_pdf(name, dosh_list):
     pdf = FPDF()
     pdf.add_page()
@@ -60,9 +47,6 @@ def create_pdf(name, dosh_list):
     pdf.cell(200, 10, txt="Powered by Ashwik Bire", align='C')
     return pdf.output(dest='S').encode('latin1')
 
-# -----------------------------
-# हथेली स्कैनिंग
-# -----------------------------
 def scan_hand(image):
     mp_hands = mp.solutions.hands
     with mp_hands.Hands(static_image_mode=True, max_num_hands=1) as hands:
@@ -73,9 +57,6 @@ def scan_hand(image):
         else:
             return "हस्तरेखा नहीं मिली"
 
-# -----------------------------
-# UI Functional Routing
-# -----------------------------
 if selected == "🏠 होम":
     st.markdown("स्वागत है आपकी व्यक्तिगत ज्योतिष सहायक में।")
 elif selected == "🔭 कुंडली":
@@ -110,11 +91,9 @@ elif selected == "📄 PDF":
     if st.button("PDF डाउनलोड करें"):
         pdf_bytes = create_pdf(name, dosh_sample)
         st.download_button("यहाँ क्लिक करें PDF डाउनलोड के लिए", data=pdf_bytes, file_name="kundli_report.pdf")
-"""
+'''
 
-# Save the app.py file
-app_file_path = "/mnt/data/app.py"
-with open(app_file_path, "w", encoding="utf-8") as f:
+# Save app.py
+with open("app.py", "w", encoding="utf-8") as f:
     f.write(app_code)
 
-app_file_path
