@@ -91,9 +91,4 @@ elif selected == "📄 PDF":
     if st.button("PDF डाउनलोड करें"):
         pdf_bytes = create_pdf(name, dosh_sample)
         st.download_button("यहाँ क्लिक करें PDF डाउनलोड के लिए", data=pdf_bytes, file_name="kundli_report.pdf")
-'''
-
-# Save app.py
-with open("app.py", "w", encoding="utf-8") as f:
-    f.write(app_code)
 
