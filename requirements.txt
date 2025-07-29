@@ -1,7 +1,7 @@
-streamlit>=1.35
-flatlib
-fpdf
-opencv-python-headless
-mediapipe
-numpy
-streamlit-option-menu
+streamlit==1.35.0
+flatlib==0.2.0
+fpdf==1.7.2
+opencv-python-headless==4.9.0.80
+mediapipe==0.10.9
+numpy==1.24.4
+streamlit-option-menu==0.3.6
